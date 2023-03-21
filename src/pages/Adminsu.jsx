@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import Button from "./Button";
+import Button from "../components/Button";
+import Logo from "../assets/assets";
 import { NavLink } from "react-router-dom";
 
 function validatePassword(password) {
@@ -8,7 +9,7 @@ function validatePassword(password) {
   return regex.test(password);
 }
 
-const Studentsu = () => {
+const Adminsu = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -40,13 +41,14 @@ const Studentsu = () => {
 
   return (
     <>
-      <div className="font-Montserrat md:h-screen pb-5  flex flex-col    bg-bg-color ">
+      <div className="font-Montserrat    flex flex-col     bg-bg-color ">
+      <div className="h-[7%] w-[12%] fixed"><img src={Logo} alt="" /></div>
         <form
           action="submit"
           onSubmit={handleSubmit}
-          className="h-3/4 drop-shadow-2xl rounded-xl mx-[5%] md:mx-[15%] bg-bg-color p-5 mt-20 "
+          className="h-4/5 mb-5 drop-shadow-2xl rounded-xl mx-[5%] md:mx-[15%] bg-bg-color pt-5 px-5 mt-20 "
         >
-          <h2 className="font-bold text-center">Create new account <span className="text-brown">(Student)</span></h2>
+          <h2 className="font-bold text-center mt-5 ">Create new account <span className="text-brown">(Admin)</span></h2>
 
           <div className="my-20">
             <div className="border-b-2 border-border  w-full mt-4    py-2">
@@ -106,17 +108,33 @@ const Studentsu = () => {
               </div>
               <div className="border-b-2 border-border w-full md:ml-2 mt-4  md:w-1/2  py-2">
                 <input
+                  type="text/number"
+                  className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  required
+                  placeholder="Admin Verification Code"
+                />
+              </div>
+            </div>
+            <div className="flex md:flex-row flex-col justify-between">
+              <div className="border-b-2 border-border w-full md:mr-2 mt-4  md:w-1/2  py-2">
+                <input
                   type="text"
                   className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
                   required
-                  placeholder="Alternative email"
+                  placeholder="Organisation"
                 />
               </div>
-             
+              <div className="border-b-2 border-border w-full md:ml-2 mt-4  md:w-1/2  py-2">
+                <input
+                  type="text"
+                  className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  required
+                  placeholder="Role"
+                />
+              </div>
             </div>
-            
             <div className="flex md:flex-row flex-col justify-between">
-              <div className="flex border-b-2 border-border w-full mt-4  py-2">
+              <div className="flex border-b-2 border-border w-full md:mr-2 mt-4  md:w-1/2  py-2">
                 <input
                   type="text"
                   className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -131,19 +149,28 @@ const Studentsu = () => {
                   </option>
                 </select>
               </div>
-              
+              <div className="border-b-2 border-border w-full md:ml-2 mt-4  md:w-1/2  py-2">
+                <input
+                  type="text"
+                  className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  required
+                  placeholder="Alternative email"
+                />
+              </div>
             </div>
             <NavLink to="/Verification">
               {" "}
               <Button text="Submit" />{" "}
             </NavLink>
           </div>
-        </form><div>
-        <p className="font-bold text-center mt-5 ">Already have an account? <span className="text-brown"><NavLink to="/student-signin">Log In</NavLink></span></p>
+        </form>
+
+        <div className="mb-3">
+        <p className="font-bold text-center mt-5 ">Already have an account? <span className="text-brown"><NavLink to="/admin-signin">Log In</NavLink></span></p>
         </div>
       </div>
     </>
   );
 };
 
-export default Studentsu;
+export default Adminsu;

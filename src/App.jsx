@@ -1,16 +1,17 @@
 import { useState } from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Welcome from "./components/Welcome"
+import Welcome from "./pages/Welcome"
 import { } from "react-router-dom";
-import Adminsu from "./components/Adminsu";
-import StudentSu from "./components/Studentsu";
-import Verification from "./components/Verification";
-import Adminsi from "./components/Adminsi";
-import Studentsi from "./components/Studentsi"
+import Adminsu from "./pages/Adminsu";
+import StudentSu from "./pages/Studentsu";
+import Verification from "./pages/Verification";
+import Adminsi from "./pages/Adminsi";
+import Studentsi from "./pages/Studentsi"
 const Content = () => {
   return <>
     <Routes>
+    
       <Route path="/" element={<Welcome/>}/>
       <Route path="/admin-signup" element={<Adminsu/>}/>
       <Route path="/student-signup" element={<StudentSu/>}/>

@@ -1,13 +1,14 @@
 import React from "react";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { BsPersonWorkspace } from "react-icons/bs";
+import Logo from "../assets/assets"
 import { NavLink } from "react-router-dom";
 const Welcome = () => {
   return (
     <>
       <div className="flex flex-col py-4   bg-bg-color h-screen text-black">
-        <div>Logo</div>
-        <div className="flex flex-col drop-shadow-2xl mx-[10%] md:mx-[25%] mt-16 h-full bg-bg-color rounded-xl">
+        <div className="h-[7%] w-[12%]"><img src={Logo} alt="" /></div>
+        <div className="flex flex-col drop-shadow-2xl mx-[10%] md:mx-[25%] mt-10 h-full bg-bg-color rounded-xl">
           <div className="h-1/2 p-2 flex justify-center items-center border-b border-border">
             <p className=" w-3/4 md:w-1/2 text-center text-xl  md:text-2xl font-Montserrat font-bold">
               Sign In To The Learning{" "}

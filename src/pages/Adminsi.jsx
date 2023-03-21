@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import Button from "./Button";
+import Button from "../components/Button";
 import { NavLink } from "react-router-dom";
-
+import Logo from "../assets/assets";
 function validatePassword(password) {
   const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
   return regex.test(password);
@@ -41,6 +41,7 @@ const Adminsi = () => {
   return (
     <>
       <div className="font-Montserrat md:h-screen pb-5  flex flex-col    bg-bg-color ">
+      <div className="h-[7%] w-[12%] fixed"><img src={Logo} alt="" /></div>
         <form
           action="submit"
           onSubmit={handleSubmit}
@@ -81,7 +82,7 @@ const Adminsi = () => {
             </NavLink>
           </div>
         </form><div>
-        <p className="font-bold text-center mt-5 ">Don't have an account? <span className="text-brown"><NavLink to="/student-signup">Sign Up</NavLink></span></p>
+        <p className="font-bold text-center mt-5 ">Don't have an account? <span className="text-brown"><NavLink to="/admin-signup">Sign Up</NavLink></span></p>
         </div>
       </div>
     </>
