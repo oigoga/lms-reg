@@ -94,8 +94,8 @@ const Studentsi = () => {
   return (
     <>
       <div className="font-Montserrat md:h-screen pb-5  flex flex-col    bg-white ">
-        <div className="h-[20%] w-[25%] md:h-[7%] md:w-[12%] fixed">
-          <img src={Logo} alt="" />
+      <div className="h-[25%] w-[35%] md:h-[20%] md:w-[20%] -mt-10 -ml-5 md:mt-0 md:ml-0 fixed z-10">
+          <img src={Logo} alt="" className='h-full w-full'/>
         </div>
         <form
           action="submit"

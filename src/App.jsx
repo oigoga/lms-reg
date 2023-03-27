@@ -9,6 +9,7 @@ import Verification from "./pages/Verification";
 import Adminsi from "./pages/Adminsi";
 import Studentsi from "./pages/Studentsi";
 import Resetpassword from "./pages/Resetpassword";
+import Loginmain from "./pages/Loginmain";
 const Content = () => {
   return <>
     <Routes>
@@ -20,6 +21,7 @@ const Content = () => {
       <Route path="/admin-signin" element={<Adminsi/>}/>
       <Route path="/student-signin" element={<Studentsi/>}/>
       <Route path="/reset-password" element={<Resetpassword/>}/>
+      <Route path="/main-login" element={<Loginmain/>}/>
     </Routes>
     
   </>;

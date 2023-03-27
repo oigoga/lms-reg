@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Button from "../components/Button";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/assets";
+import axios from "axios";
 function validatePassword(password) {
   const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
   return regex.test(password);
@@ -37,7 +38,7 @@ const Adminsi = () => {
     event.preventDefault();
     // handle form submission
   }
-  const forgotPassword = (email) => {
+  const forgotPassword = async(email) => {
     return axios.post('https://learningmanagement-staging.up.railway.app/api/learning-mgt/v1/auth/forgot-password/', { email })
       .then((response) => {
         console.log('Email sent successfully', response);
@@ -47,12 +48,12 @@ const Adminsi = () => {
       });
   };
 
-  sendResetPasswordEmail('gogaelisabeth21@gmail.com');
+  forgotPassword('gogaelisabeth21@gmail.com');
   return (
     <>
-      <div className="font-Montserrat md:h-screen pb-5  flex flex-col    bg-bg-color ">
-        <div className="h-[20%] w-[25%] md:h-[7%] md:w-[12%] fixed">
-          <img src={Logo} alt="" />
+      <div className="font-Montserrat md:h-screen pb-5  flex flex-col    bg-white ">
+      <div className="h-[25%] w-[35%] md:h-[20%] md:w-[20%] -mt-10 -ml-5 md:mt-0 md:ml-0 fixed z-10">
+          <img src={Logo} alt="" className='h-full w-full'/>
         </div>
         <form
           action="submit"

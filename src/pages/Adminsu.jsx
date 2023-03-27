@@ -100,11 +100,11 @@ const Adminsu = () => {
     <>
 
       <div className="font-Montserrat    flex flex-col     bg-bg-color ">
-      <div className="h-[20%] w-[25%] md:h-[7%] md:w-[12%] fixed">
-          <img src={Logo} alt="" />
+      <div className="h-[25%] w-[35%] md:h-[20%] md:w-[20%] -mt-10 -ml-5 md:mt-0 md:ml-0 fixed z-10">
+          <img src={Logo} alt="" className='h-full w-full'/>
         </div>
         
-      {errorMessage && <div>{errorMessage}</div>}
+      
         <form
           action="submit"
          onSubmit={handleSubmit}
@@ -218,24 +218,7 @@ const Adminsu = () => {
               </div>
             </div>
             <div className="flex md:flex-row flex-col justify-between">
-              <div className="flex border-b-2 border-border w-full md:mr-2 mt-4  md:w-1/2  py-2">
-                <input
-                  type="text"
-                  className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
-                  required
-                  name="question"
-                  value={securityQuestion}
-                  onChange={(e) => setSecurityQuestion(e.target.value)}
-                  placeholder="Security Question"
-                />
-                <select className="bg-bg-color w-1/2">
-                  <option>In what city did your parents meet</option>
-                  <option>What was the name of your first pet</option>
-                  <option>
-                    What is the name of your childhood best friend
-                  </option>
-                </select>
-              </div>
+              
               <div className="border-b-2 border-border w-full md:ml-2 mt-4  md:w-1/2  py-2">
                 <input
                   type="text"

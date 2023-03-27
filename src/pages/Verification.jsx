@@ -5,16 +5,16 @@ import { NavLink } from "react-router-dom";
 const Verification = () => {
   return (
     <>
-      <div className="font-Montserrat h-screen   flex flex-col     bg-bg-color ">
-        <div className="h-[20%] w-[25%] md:h-[7%] md:w-[12%] fixed">
-          <img src={Logo} alt="" />
+      <div className="font-Montserrat h-screen   flex flex-col     bg-white ">
+      <div className="h-[25%] w-[35%] md:h-[20%] md:w-[20%] -mt-10 -ml-5 md:mt-0 md:ml-0 fixed z-10">
+          <img src={Logo} alt="" className='h-full w-full'/>
         </div>
         <form
           action="submit"
           className="h-1/2 mb-5 drop-shadow-2xl rounded-xl mx-[5%] md:mx-[15%] bg-bg-color pt-5 px-5 mt-20 "
         >
           <h2 className="font-bold text-center mt-5 ">
-            Verify Account <span className="text-brown">(Admin)</span>
+            Verify Account 
           </h2>
 
           <div className="my-20">
@@ -28,7 +28,7 @@ const Verification = () => {
               />
             </div>
 
-            <NavLink to="/admin-signup">
+            <NavLink to="/main-login">
               {" "}
               <div className="flex justify-center my-7">
                 <button
@@ -46,7 +46,7 @@ const Verification = () => {
           <p className="font-bold text-center mt-5 ">
             Already have an account?{" "}
             <span className="text-brown">
-              <NavLink to="/admin-signin">Log In</NavLink>
+              <NavLink to="/main-login">Log In</NavLink>
             </span>
           </p>
         </div>
