@@ -13,6 +13,11 @@ const Studentsu = () => {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [firstName, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [securityQuestion, setSecurityQuestion] = useState("");
+  const [secondaryEmailAddress, setSecondaryEmailAddress] = useState("");
 
   function handlePasswordChange(event) {
     setPassword(event.target.value);
@@ -33,18 +38,40 @@ const Studentsu = () => {
         : "Password must be at least 8 characters long, contain at least one uppercase letter, one symbol, and one number"
     );
   }
-  function handleSubmit(event) {
-    event.preventDefault();
-    // handle form submission
+  
+  const signUp = async (event) => {
+    let data = { firstName,
+      email,
+      password,
+      confirmPassword,
+      dateOfBirth,
+      securityQuestion,
+      secondaryEmailAddress,
+
+      }
+
+      console.warn(data)
+      
+   let result =  await fetch("https://learningmanagement-staging.up.railway.app/api/learning-mgt/v1/user/sign-up", {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          "content-type": 'application/json'
+        }
+      })
+      result =await result.json()
+      console.warn("result", result)
   }
 
   return (
     <>
       <div className="font-Montserrat md:h-screen pb-5  flex flex-col    bg-bg-color ">
-      <div className="h-[7%] w-[12%] fixed"><img src={Logo} alt="" /></div>
+      <div className="h-[20%] w-[25%] md:h-[7%] md:w-[12%] fixed">
+          <img src={Logo} alt="" />
+        </div>
         <form
           action="submit"
-          onSubmit={handleSubmit}
+          
           className="h-3/4 drop-shadow-2xl rounded-xl mx-[5%] md:mx-[15%] bg-bg-color p-5 mt-20 "
         >
           <h2 className="font-bold text-center">Create new account <span className="text-brown">(Student)</span></h2>
@@ -55,6 +82,9 @@ const Studentsu = () => {
                 type="text"
                 className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
                 required
+                name="name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 placeholder="Full Name"
               />
             </div>
@@ -63,6 +93,9 @@ const Studentsu = () => {
                 type="email"
                 className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
                 required
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
               />
             </div>
@@ -75,6 +108,7 @@ const Studentsu = () => {
                   required
                   onChange={handlePasswordChange}
                   value={password}
+                  name="password"
                   placeholder="Password"
                 />
                 {passwordError && (
@@ -86,6 +120,7 @@ const Studentsu = () => {
                   type="password"
                   className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
                   required
+                  name="password"
                   value={confirmPassword}
                   onChange={handleConfirmPasswordChange}
                   placeholder="Confirm Password"
@@ -102,6 +137,10 @@ const Studentsu = () => {
                   type="date"
                   className=" appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
                   required
+                
+                  name="dateOfBirth"
+                  value={dateOfBirth}
+                  onChange={(e) => setDateOfBirth(e.target.value)}
                   placeholder="Date Of Birth"
                 />
               </div>
@@ -110,6 +149,9 @@ const Studentsu = () => {
                   type="text"
                   className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
                   required
+                  name="alternativeEmail"
+                  value={secondaryEmailAddress}
+                  onChange={(e) => setSecondaryEmailAddress(e.target.value)}
                   placeholder="Alternative email"
                 />
               </div>
@@ -122,6 +164,9 @@ const Studentsu = () => {
                   type="text"
                   className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
                   required
+                  name="question"
+                  value={securityQuestion}
+                  onChange={(e) => setSecurityQuestion(e.target.value)}
                   placeholder="Security Question"
                 />
                 <select className="bg-bg-color w-1/2">
@@ -135,8 +180,10 @@ const Studentsu = () => {
               
             </div>
             <NavLink to="/Verification">
-              {" "}
-              <Button text="Submit" />{" "}
+             
+              <div className='flex justify-center my-7'>
+  <button type="submit" onClick={signUp} className='px-2 w-3/4 hover:bg-brown border-border border-2 text-black font-Montserrat hover:text-white text-base md:w-1/4 rounded-md py-2'>Sign Up</button>
+  </div>
             </NavLink>
           </div>
         </form><div>

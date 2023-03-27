@@ -7,7 +7,9 @@ const Welcome = () => {
   return (
     <>
       <div className="flex flex-col py-4   bg-bg-color h-screen text-black">
-        <div className="h-[7%] w-[12%]"><img src={Logo} alt="" /></div>
+      <div className="h-[20%] w-[25%] md:h-[7%] md:w-[12%] fixed">
+          <img src={Logo} alt="" />
+        </div>
         <div className="flex flex-col drop-shadow-2xl mx-[10%] md:mx-[25%] mt-10 h-full bg-bg-color rounded-xl">
           <div className="h-1/2 p-2 flex justify-center items-center border-b border-border">
             <p className=" w-3/4 md:w-1/2 text-center text-xl  md:text-2xl font-Montserrat font-bold">

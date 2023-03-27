@@ -7,7 +7,8 @@ import Adminsu from "./pages/Adminsu";
 import StudentSu from "./pages/Studentsu";
 import Verification from "./pages/Verification";
 import Adminsi from "./pages/Adminsi";
-import Studentsi from "./pages/Studentsi"
+import Studentsi from "./pages/Studentsi";
+import Resetpassword from "./pages/Resetpassword";
 const Content = () => {
   return <>
     <Routes>
@@ -18,6 +19,7 @@ const Content = () => {
       <Route path="/verification" element={<Verification/>}/>
       <Route path="/admin-signin" element={<Adminsi/>}/>
       <Route path="/student-signin" element={<Studentsi/>}/>
+      <Route path="/reset-password" element={<Resetpassword/>}/>
     </Routes>
     
   </>;

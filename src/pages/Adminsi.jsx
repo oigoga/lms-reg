@@ -18,7 +18,7 @@ const Adminsi = () => {
     setPassword(event.target.value);
     setPasswordsMatch(event.target.value === confirmPassword);
   }
-  
+
   function handleConfirmPasswordChange(event) {
     setConfirmPassword(event.target.value);
     setPasswordsMatch(event.target.value === password);
@@ -37,20 +37,35 @@ const Adminsi = () => {
     event.preventDefault();
     // handle form submission
   }
+  const forgotPassword = (email) => {
+    return axios.post('https://learningmanagement-staging.up.railway.app/api/learning-mgt/v1/auth/forgot-password/', { email })
+      .then((response) => {
+        console.log('Email sent successfully', response);
+      })
+      .catch((error) => {
+        console.error('Error sending email', error);
+      });
+  };
 
+  sendResetPasswordEmail('gogaelisabeth21@gmail.com');
   return (
     <>
       <div className="font-Montserrat md:h-screen pb-5  flex flex-col    bg-bg-color ">
-      <div className="h-[7%] w-[12%] fixed"><img src={Logo} alt="" /></div>
+        <div className="h-[20%] w-[25%] md:h-[7%] md:w-[12%] fixed">
+          <img src={Logo} alt="" />
+        </div>
         <form
           action="submit"
           onSubmit={handleSubmit}
           className="h-1/2 drop-shadow-2xl rounded-xl mx-[5%] md:mx-[15%] bg-bg-color p-5 mt-20 "
         >
-          <h2 className="font-bold text-center">Sign In outto your Account<span className="text-brown"> (Admin)</span></h2>
+          <h2 className="font-bold text-center">
+            Sign Into your Account
+            <span className="text-brown"> (Admin)</span>
+          </h2>
 
           <div className="my-20">
-          <div className="border-b-2 border-border  w-full mt-4    py-2">
+            <div className="border-b-2 border-border  w-full mt-4    py-2">
               <input
                 type="email"
                 className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -59,30 +74,41 @@ const Adminsi = () => {
               />
             </div>
             <div className="border-b-2 border-border w-full  mt-4   py-2">
-                <input
-                  type="password"
-                  className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
-                  required
-                  onChange={handlePasswordChange}
-                  value={password}
-                  placeholder="Password"
-                />
-                {passwordError && (
-                  <div style={{ color: "red" }}>{passwordError}</div>
-                )}
-              </div>
+              <input
+                type="password"
+                className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
+                required
+                onChange={handlePasswordChange}
+                value={password}
+                placeholder="Password"
+              />
+              {passwordError && (
+                <div style={{ color: "red" }}>{passwordError}</div>
+              )}
+            </div>
 
-            
+            <div>
+              <p className="font-bold text-center mt-5 ">
+                Forgotten your password?{" "}
+                <span className="text-brown" onClick={forgotPassword}>
+                  <NavLink to="/reset-password">Reset password</NavLink>
+                </span>
+              </p>
+            </div>
 
-            
-           
-            <NavLink to="/Verification">
+            <NavLink to="/dashboard">
               {" "}
               <Button text="Submit" />{" "}
             </NavLink>
           </div>
-        </form><div>
-        <p className="font-bold text-center mt-5 ">Don't have an account? <span className="text-brown"><NavLink to="/admin-signup">Sign Up</NavLink></span></p>
+        </form>
+        <div>
+          <p className="font-bold text-center mt-5 ">
+            Don't have an account?{" "}
+            <span className="text-brown">
+              <NavLink to="/admin-signup">Sign Up</NavLink>
+            </span>
+          </p>
         </div>
       </div>
     </>
