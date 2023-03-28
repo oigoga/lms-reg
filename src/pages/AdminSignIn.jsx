@@ -9,16 +9,21 @@ function validatePassword(password) {
   return regex.test(password);
 }
 
-const Studentsi = () => {
+const AdminSignIn = () => {
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [error, setError] = useState(null);
-  const [attempts, setAttempts] = useState(0);
-  const [lockedUntil, setLockedUntil] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
 
- 
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
+    setPasswordsMatch(event.target.value === confirmPassword);
+  }
+
+  function handleConfirmPasswordChange(event) {
+    setConfirmPassword(event.target.value);
+    setPasswordsMatch(event.target.value === password);
+  }
 
   function handlePasswordChange(event) {
     const newPassword = event.target.value;
@@ -31,66 +36,19 @@ const Studentsi = () => {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    // Check if the username and password are correct
-    if (username === "example" && password === "password") {
-      // Successful login
-      setAttempts(0);
-      setError(null);
-    } else {
-      // Incorrect login credentials
-      setAttempts(attempts + 1);
-      setError("Invalid username or password");
-      if (attempts === 2) {
-        // Account locked after 3 unsuccessful attempts
-        setLockedUntil(Date.now() + 30 * 60 * 1000); // Lock account for 30 minutes
-      }
-    }
+    // handle form submission
   }
-  const signIn = (event) => {
-    
-
-    axios
-      .post("https://learningmanagement-staging.up.railway.app/api/learning-mgt/v1/auth/login", {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        // Store the access token in local storage or a state variable
-        localStorage.setItem("accessToken", response.data.accessToken);
-
-        // Redirect to the dashboard or home page
-        window.location.href = "/dashboard";
-      })
-      .catch((error) => {
-        console.error(error);
-        setErrorMessage("Failed to log in.");
-      });
-  };
-  function handleEmailChange(event) {
-    setEmail(event.target.value);
-  }
-
-  function handlePasswordChange(event) {
-    setPassword(event.target.value);
-  }
-
-  const isLocked = lockedUntil && lockedUntil > Date.now();
   const forgotPassword = async(email) => {
-    return axios
-      .post(
-        "https://learningmanagement-staging.up.railway.app/api/learning-mgt/v1/auth/forgot-password/{email}",
-        { email }
-      )
+    return axios.post('https://learningmanagement-staging.up.railway.app/api/learning-mgt/v1/auth/forgot-password/', { email })
       .then((response) => {
-        console.log("Email sent successfully", response);
+        console.log('Email sent successfully', response);
       })
       .catch((error) => {
-        console.error("Error sending email", error);
+        console.error('Error sending email', error);
       });
   };
 
-  forgotPassword("");
-
+  forgotPassword('gogaelisabeth21@gmail.com');
   return (
     <>
       <div className="font-Montserrat md:h-screen pb-5  flex flex-col    bg-white ">
@@ -103,8 +61,8 @@ const Studentsi = () => {
           className="h-1/2 drop-shadow-2xl rounded-xl mx-[5%] md:mx-[15%] bg-bg-color p-5 mt-20 "
         >
           <h2 className="font-bold text-center">
-            Sign In to your Account
-            <span className="text-brown"> (Student)</span>
+            Sign Into your Account
+            <span className="text-brown"> (Admin)</span>
           </h2>
 
           <div className="my-20">
@@ -113,9 +71,6 @@ const Studentsi = () => {
                 type="email"
                 className="appearance-none bg-transparent border-none w-full text-black mr-3 py-1 px-2 leading-tight focus:outline-none"
                 required
-                value={email}
-                onChange={handleEmailChange}
-                disabled={isLocked}
                 placeholder="Email"
               />
             </div>
@@ -131,14 +86,8 @@ const Studentsi = () => {
               {passwordError && (
                 <div style={{ color: "red" }}>{passwordError}</div>
               )}
-              {error && <div style={{ color: "red" }}>{error}</div>}
-              {isLocked && (
-                <div style={{ color: "red" }}>
-                  Account locked until{" "}
-                  {new Date(lockedUntil).toLocaleTimeString()}
-                </div>
-              )}
             </div>
+
             <div>
               <p className="font-bold text-center mt-5 ">
                 Forgotten your password?{" "}
@@ -149,15 +98,8 @@ const Studentsi = () => {
             </div>
 
             <NavLink to="/dashboard">
-              <div className="flex justify-center my-7">
-                <button
-                  type="submit"
-                  onClick={signIn}
-                  className="px-2 w-3/4 hover:bg-brown border-border border-2 text-black font-Montserrat hover:text-white text-base md:w-1/4 rounded-md py-2"
-                >
-                  Sign In
-                </button>
-              </div>
+              {" "}
+              <Button text="Submit" />{" "}
             </NavLink>
           </div>
         </form>
@@ -165,7 +107,7 @@ const Studentsi = () => {
           <p className="font-bold text-center mt-5 ">
             Don't have an account?{" "}
             <span className="text-brown">
-              <NavLink to="/student-signup">Sign Up</NavLink>
+              <NavLink to="/admin-signup">Sign Up</NavLink>
             </span>
           </p>
         </div>
@@ -174,4 +116,4 @@ const Studentsi = () => {
   );
 };
 
-export default Studentsi;
+export default AdminSignIn;

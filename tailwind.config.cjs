@@ -7,15 +7,15 @@ module.exports = {
   theme: {
     colors: {
       
-      'bg-color': '#E8DCB9',
+      'bg-color': '#006c5e',
       'black': '#0C1618',
       'orange': '#BA5C12',
       'tea': '#C3DBC5',
-      'brown': '#b5592a',
-      'buff': '#D19C66',
+      'brown': '#c2c59c',
+      'buff': '#98af84',
       'white': '#fdfdfd',
-      'border': '#c7b198',
-      'dust': '#f3bc77',
+      'border': '#eadcb9',
+      'teal': '#3c8366',
       'transparent': 'transparent',
 
     },
